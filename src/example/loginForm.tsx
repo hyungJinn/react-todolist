@@ -31,7 +31,6 @@ interface IForm {
   password1: string;
   extraError?: string;
 }
-
 function loginForm() {
   const {
     register,
