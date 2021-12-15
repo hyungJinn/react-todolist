@@ -9,14 +9,19 @@ interface IForm {
 function CreateToDo() {
   const setToDos = useSetRecoilState(toDoState);
   const category = useRecoilValue(categoryState);
+
   const { register, handleSubmit, setValue } = useForm();
+
   const handleValid = ({ toDo }: IForm) => {
-    setToDos((oldtoDos) => [
-      { text: toDo, id: Date.now(), category },
-      ...oldtoDos,
-    ]);
     setValue("toDo", "");
+    setToDos((oldToDos) => {
+      const allToDos = [...oldToDos, { text: toDo, id: Date.now(), category }];
+      const stringfiedAllToDos = JSON.stringify(allToDos);
+      localStorage.setItem("ToDos", stringfiedAllToDos);
+      return allToDos;
+    });
   };
+
   return (
     <form onSubmit={handleSubmit(handleValid)}>
       <input

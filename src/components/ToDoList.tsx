@@ -1,6 +1,12 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { Categories, categoryState, toDoSelector, toDoState } from "../atoms";
+import {
+  Categories,
+  categoryState,
+  IToDo,
+  toDoSelector,
+  toDoState,
+} from "../atoms";
 import CreateToDo from "./CreateToDo";
 import ToDo from "./ToDo";
 
@@ -11,9 +17,11 @@ interface IForm {
 function ToDoList() {
   const toDos = useRecoilValue(toDoSelector);
   const [category, setCategory] = useRecoilState(categoryState);
+
   const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
-    setCategory(event.currentTarget.value as any);
+    setCategory(event.currentTarget.value as IToDo["category"]);
   };
+
   console.log(toDos);
   return (
     <div>

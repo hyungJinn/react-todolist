@@ -17,17 +17,25 @@ export const categoryState = atom<Categories>({
   default: Categories.TO_DO,
 });
 
+// export const toDoState = atom<IToDo[]>({
+//   key: "toDo",
+//   default: [],
+// });
+
+const localStorageToDos = localStorage.getItem("ToDos");
+const parsedToDos = JSON.parse(localStorageToDos as any);
+
 export const toDoState = atom<IToDo[]>({
   key: "toDo",
-  default: [],
+  default: parsedToDos?.length > 0 ? parsedToDos : [],
 });
 
 export const toDoSelector = selector({
   key: "toDoSelector",
   get: ({ get }) => {
-    const toDos = get(toDoState);
-    const category = get(categoryState);
+    const nowToDos = get(toDoState);
+    const nowCategory = get(categoryState);
 
-    return toDos.filter((toDo) => toDo.category === category);
+    return nowToDos.filter((toDo) => toDo.category === nowCategory);
   },
 });
