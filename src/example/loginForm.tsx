@@ -32,7 +32,7 @@ interface IForm {
   extraError?: string;
 }
 
-function ToDoList() {
+function loginForm() {
   const {
     register,
     handleSubmit,
@@ -113,4 +113,4 @@ function ToDoList() {
   );
 }
 
-export default ToDoList;
+export default loginForm;
