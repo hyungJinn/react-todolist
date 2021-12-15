@@ -9,15 +9,12 @@ interface IForm {
 }
 
 function ToDoList() {
-  // const toDos = useRecoilValue(toDoState);
-  // const value = useRecoilValue(toDoState);
-  // const modFn = useSetRecoilState(toDoState);
   const toDos = useRecoilValue(toDoSelector);
   const [category, setCategory] = useRecoilState(categoryState);
   const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
     setCategory(event.currentTarget.value as any);
   };
-
+  console.log(toDos);
   return (
     <div>
       <h1>To Dos</h1>
